@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Leave Request Form</title>
+</head>
+<body>
+<h1>Leave Request Form</h1>
+<form th:action="@{/leaves/create}" th:object="${leaveRequest}" method="post">
+  <input type="hidden" th:field="*{id}" />
+  <label>Employee:</label>
+  <select th:field="*{employee}">
+    <!-- Loop through employees and create options -->
+    <option th:each="employee : ${employees}" th:value="${employee}" th:text="${employee.firstName} + ' ' + ${employee.lastName}"></option>
+  </select><br/>
+  <label>Start Date:</label>
+  <input type="date" th:field="*{startDate}" /><br/>
+  <label>End Date:</label>
+  <input type="date" th:field="*{endDate}" /><br/>
+  <label>Status:</label>
+  <input type="text" th:field="*{status}" /><br/>
+  <button type="submit">Save</button>
+</form>
+</body>
+</html>
